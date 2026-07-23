@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1, p {
+    margin: 0;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+}
+
+.header-content h1 {
+    color: var(--color-text);
+}
+
+.header-content p {
+    color: var(--color-text-light);
+}

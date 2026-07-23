@@ -1,7 +1,12 @@
+import Header from './sections/header';
+import Stats from './sections/stats';
+import './app.css';
+
 function App() {
   return (
-    <div>
-      <h1>Car Mod Planner 🚗</h1>
+    <div className="app">
+      <Header />
+      <Stats />
     </div>
   );
 }

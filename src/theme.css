@@ -1,0 +1,24 @@
+:root {
+    --color-primary: #00BBDF;
+
+    --color-secondary: #13191F;
+
+    --color-text: #EDEBE9;
+    --color-text-light: #9BA6B1;
+    --color-text-dark: #090E12;
+
+    --color-bg: #090E12;
+
+    --color-border: #232A30;
+
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+
+    --radius-sm: 24px;
+    --radius-md: 50px;
+
+    --font: Poppins, sans-serif;
+    --font-titles: 24px;
+    --font-text: 14px;
+}
