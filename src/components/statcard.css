@@ -22,6 +22,7 @@
 
 .stat-card-icon {
     color: var(--color-primary);
+    font-size: var(--font-titles);
 }
 
 .stat-card-details {

@@ -1,4 +1,5 @@
 import Button from '../components/button';
+import { BsPlusLg } from 'react-icons/bs';
 import './header.css';
 
 export default function Header() {
@@ -9,7 +10,7 @@ export default function Header() {
                 <p>Plan, budget, and track your build</p>
             </div>
 
-            <Button onClick={() => console.log('clicked')}>
+            <Button icon={BsPlusLg} onClick={() => console.log('clicked')}>
                 Add Mod
             </Button>
         </header>

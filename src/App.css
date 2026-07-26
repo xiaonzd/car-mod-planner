@@ -17,6 +17,12 @@ h2 {
     margin: 0;
 }
 
+h3 {
+    font-size: var(--font-text);
+    font-weight: 600;
+    margin: 0;
+}
+
 p {
     font-size: var(--font-text);
 }

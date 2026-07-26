@@ -1,5 +1,6 @@
 import Header from './sections/header';
 import Stats from './sections/stats';
+import Parts from './sections/parts';
 import './app.css';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="app">
       <Header />
       <Stats />
+      <Parts />
     </div>
   );
 }
