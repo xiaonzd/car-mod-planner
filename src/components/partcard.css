@@ -1,7 +1,7 @@
 .part-card {
     display: flex;
     justify-content: space-between;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     padding: var(--spacing-md);
     border-radius: var(--radius-sm);
     background-color: var(--color-secondary);
@@ -10,7 +10,6 @@
 
 .part-card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: var(--spacing-md);
 }
@@ -18,41 +17,124 @@
 .part-card-priority-rectangle {
     width: 5px;
     height: 50px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
 }
 
-.part-card-priority-rectangle.high {
+.part-card-priority-rectangle.danger {
     background-color: var(--color-danger);
 }
 
-.part-card-priority-rectangle.medium {
+.part-card-priority-rectangle.warning {
     background-color: var(--color-warning);
 }
 
-.part-card-priority-rectangle.low {
+.part-card-priority-rectangle.info {
     background-color: var(--color-info);
 }
 
+.part-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .part-card-title {
+    margin: 0;
     color: var(--color-text);
 }
 
 .part-card-type {
+    margin: 0;
     color: var(--color-text-light);
-    padding-top: var(--spacing-sm);    
 }
 
-.part-card-priority {
-    text-transform: uppercase;
+.part-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    padding: 4px 8px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-small);
+    font-weight: 500;
+}
+
+.part-card-badge svg {
+    font-size: 12px;
+}
+
+.part-card-badge.priority {
+    margin-left: var(--spacing-sm);
+}
+
+.part-card-badge.success {
+    color: var(--color-success);
+    background-color: rgba(30, 215, 96, 0.1);
+    border: 1px solid rgba(30, 215, 96, 0.2);
+}
+
+.part-card-badge.warning {
+    color: var(--color-warning);
+    background-color: rgba(246, 175, 0, 0.1);
+    border: 1px solid rgba(246, 175, 0, 0.2);
+}
+
+.part-card-badge.danger {
+    color: var(--color-danger);
+    background-color: rgba(249, 63, 78, 0.1);
+    border: 1px solid rgba(249, 63, 78, 0.2);
+}
+
+.part-card-badge.info {
+    color: var(--color-info);
+    background-color: rgba(155, 166, 177, 0.1);
+    border: 1px solid rgba(155, 166, 177, 0.2);
 }
 
 .part-card-body {
     display: flex;
-    gap: var(--spacing-md);
     align-items: center;
+    justify-content: space-between;
+    margin-left: calc(5px + var(--spacing-md));
 }
 
 .part-card-details {
     display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.part-card-value {
+    margin: 0;
+    color: var(--color-text);
+}
+
+.part-card-actions {
+    display: flex;
+    align-items: center;
     gap: var(--spacing-sm);
+}
+
+.part-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-light);
+    cursor: pointer;
+}
+
+.part-card-action:hover {
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+}
+
+.part-card-action.delete:hover {
+    color: var(--color-danger);
 }
