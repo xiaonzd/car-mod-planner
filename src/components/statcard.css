@@ -38,3 +38,38 @@
 .stat-card-detail {
     color: var(--color-text-light);
 }
+
+.stat-card-value.editable {
+    cursor: pointer;
+}
+
+.stat-card-value.editable:hover {
+    color: var(--color-primary);
+}
+
+.stat-card-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+}
+
+.stat-card-currency {
+    color: var(--color-text);
+    font-size: var(--font-titles);
+    font-weight: 600;
+}
+
+.stat-card-input {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--color-text);
+    font-size: var(--font-titles);
+    font-family: var(--font);
+    font-weight: 600;
+    line-height: 1;
+    text-align: left;
+    direction: ltr;
+}
