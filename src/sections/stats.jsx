@@ -11,7 +11,7 @@ import { BsCart2 } from "react-icons/bs";
 import { BsWallet2 } from "react-icons/bs";
 import { BsCheckCircle } from "react-icons/bs";
 
-export default function Stats() {
+export default function Stats({ mods = [] }) {
 
     const [projectId, setProjectId] = useState(null);
     const [budget, setBudget] = useState(0);
@@ -84,13 +84,63 @@ export default function Stats() {
         }
     }
 
+    const spent = mods
+        .filter(
+            (mod) =>
+                mod.status === "bought" ||
+                mod.status === "in progress" ||
+                mod.status === "installed"
+        )
+        .reduce((total, mod) => total + Number(mod.price || 0), 0);
+
+    const totalPlanned = mods
+        .reduce((total, mod) => total + Number(mod.price || 0), 0);
+
+    const installedMods = mods.filter(
+        (mod) => mod.status === "installed"
+    ).length;
+
+    const buildProgress =
+        mods.length > 0
+            ? Math.round((installedMods / mods.length) * 100)
+            : 0;
+
+    const spentPercentage =
+        budget > 0
+            ? Math.round((spent / budget) * 100)
+            : 0;
+
     return (
         <>
             <div className="stats">
-                <StatCard title="Budget" icon={<BsCurrencyEuro />} value={budget} format="currency" details="Total project budget" editable={true} onValueChange={updateBudget}/>
-                <StatCard title="Spent" icon={<BsCart2 />} value="1,580€" details="16% of budget" />
-                <StatCard title="Total Planned" icon={<BsWallet2 />} value="9,080€" details="5 mods on the list" />
-                <StatCard title="Build Progress" icon={<BsCheckCircle />} value="20%" details="1 of 5 installed" />
+                <StatCard
+                    title="Budget"
+                    icon={<BsCurrencyEuro />}
+                    value={budget} format="currency"
+                    details="Total project budget"
+                    editable={true}
+                    onValueChange={updateBudget}
+                />
+                <StatCard
+                    title="Spent"
+                    icon={<BsCart2 />}
+                    value={spent}
+                    format="currency"
+                    details={`${spentPercentage}% of budget spent`}
+                />
+                <StatCard
+                    title="Total Planned"
+                    icon={<BsWallet2 />}
+                    value={totalPlanned}
+                    format="currency"
+                    details={`${mods.length} mods on the list`}
+                />
+                <StatCard
+                    title="Build Progress"
+                    icon={<BsCheckCircle />}
+                    value={`${buildProgress}%`}
+                    details={`${installedMods} of ${mods.length} mods installed`}
+                />
             </div>
 
             {toast && (
