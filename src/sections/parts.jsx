@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { BsExclamationTriangle, BsXLg } from "react-icons/bs";
 import PartCard from "../components/partcard";
 import Button from "../components/button";
 import "./parts.css";
 
-export default function Parts({ mods, onEdit }) {
+export default function Parts({ mods, onEdit, onDelete }) {
     const [filter, setFilter] = useState("all");
+    const [deleteMod, setDeleteMod] = useState(null);
 
     const filteredMods =
         filter === "all"
@@ -73,9 +75,65 @@ export default function Parts({ mods, onEdit }) {
                         value={`${mod.price.toLocaleString("en-US")}€`}
                         status={mod.status}
                         onEdit={() => onEdit(mod)}
+                        onDelete={() => setDeleteMod(mod)}
                     />
                 ))}
             </div>
+
+            {deleteMod && (
+                <div className="overlay">
+                    <div className="modal delete-modal">
+                        <div className="modal-header">
+                            <h2 className="title">Delete Mod?</h2>
+
+                            <button
+                                className="close-button"
+                                onClick={() => setDeleteMod(null)}
+                            >
+                                <BsXLg />
+                            </button>
+                        </div>
+
+                        <div className="delete-modal-content">
+                            <p>
+                                Are you sure you want to remove{" "}
+                                <strong>{deleteMod.name}</strong> from your build?
+                            </p>
+
+                            <div className="delete-warning">
+                                <BsExclamationTriangle />
+                                <span>
+                                    This mod and all of its saved details will be
+                                    permanently deleted.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="delete-modal-actions">
+                            <Button
+                                variant="secondary"
+                                onClick={() => setDeleteMod(null)}
+                            >
+                                Cancel
+                            </Button>
+
+                            <Button
+                                variant="danger"
+                                onClick={async () => {
+                                    const success = await onDelete(deleteMod);
+
+                                    if (success) {
+                                        setDeleteMod(null);
+                                    }
+                                }}
+                            >
+                                Delete Mod
+                            </Button>
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

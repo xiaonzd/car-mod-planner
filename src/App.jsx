@@ -67,6 +67,35 @@ export default function App() {
         });
     };
 
+    const handleDelete = async (mod) => {
+      const { error } = await supabase
+          .from("mod")
+          .delete()
+          .eq("id", mod.id);
+
+      if (error) {
+          console.log("Error deleting mod:", error);
+
+          setToast({
+              message: "Failed to delete mod",
+              icon: BsExclamationCircle,
+              variant: "error",
+          });
+
+          return false;
+      }
+
+      await fetchMods();
+
+      setToast({
+          message: "Mod deleted successfully",
+          icon: BsCheckCircle,
+          variant: "success",
+      });
+
+      return true;
+  };
+
     return (
         <div className="app">
             <Header onAddClick={handleCreate} />
@@ -76,6 +105,7 @@ export default function App() {
             <Parts
                 mods={mods}
                 onEdit={handleEdit}
+                onDelete={handleDelete}
             />
 
             {showPopup && (
