@@ -16,7 +16,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--font-text);
+    font-size: var(--font-subtitles);
     font-weight: 600;
     margin: 0;
 }

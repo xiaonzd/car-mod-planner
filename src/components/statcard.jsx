@@ -47,9 +47,9 @@ export default function StatCard({ title, icon, value, details, editable = false
     return (
         <div className="stat-card">
             <div className="stat-card-header">
-                <h2 className="stat-card-title">
+                <h3 className="stat-card-title">
                     {title}
-                </h2>
+                </h3>
 
                 <div className="stat-card-icon">
                     {icon}

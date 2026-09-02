@@ -16,7 +16,7 @@
 
 .part-card-priority-rectangle {
     width: 5px;
-    height: 50px;
+    height: 55px;
     border-radius: var(--radius-sm);
     flex-shrink: 0;
 }
@@ -36,7 +36,7 @@
 .part-card-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--spacing-sm);
 }
 
 .part-card-title {
@@ -52,16 +52,16 @@
 .part-card-badge {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: var(--spacing-sm);
     width: fit-content;
-    padding: 4px 8px;
+    padding: 6px 14px;
     border-radius: var(--radius-md);
-    font-size: var(--font-small);
+    font-size: var(--font-subtitles);
     font-weight: 500;
 }
 
 .part-card-badge svg {
-    font-size: 12px;
+    font-size: var(--font-text);
 }
 
 .part-card-badge.priority {
@@ -70,26 +70,26 @@
 
 .part-card-badge.success {
     color: var(--color-success);
-    background-color: rgba(30, 215, 96, 0.1);
-    border: 1px solid rgba(30, 215, 96, 0.2);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .part-card-badge.warning {
     color: var(--color-warning);
-    background-color: rgba(246, 175, 0, 0.1);
-    border: 1px solid rgba(246, 175, 0, 0.2);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .part-card-badge.danger {
     color: var(--color-danger);
-    background-color: rgba(249, 63, 78, 0.1);
-    border: 1px solid rgba(249, 63, 78, 0.2);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .part-card-badge.info {
     color: var(--color-info);
-    background-color: rgba(155, 166, 177, 0.1);
-    border: 1px solid rgba(155, 166, 177, 0.2);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .part-card-body {
@@ -97,6 +97,7 @@
     align-items: center;
     justify-content: space-between;
     margin-left: calc(5px + var(--spacing-md));
+    gap: var(--spacing-md);
 }
 
 .part-card-details {
@@ -124,15 +125,14 @@
     height: 32px;
     padding: 0;
     border: none;
-    border-radius: var(--radius-sm);
     background: transparent;
     color: var(--color-text-light);
     cursor: pointer;
+    font-size: var(--font-subtitles);
 }
 
 .part-card-action:hover {
     color: var(--color-primary);
-    background-color: var(--color-bg);
 }
 
 .part-card-action.delete:hover {

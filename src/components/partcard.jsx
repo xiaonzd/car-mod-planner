@@ -1,19 +1,20 @@
 import './partcard.css';
-import { BsExclamationCircle, BsDashCircle, BsCheckCircle, BsCart2, BsClock, BsPencil, BsTrash, } from "react-icons/bs";
+import { BsCheckCircle, BsCart2, BsClock, BsPencil, BsTrash, } from "react-icons/bs";
+import { RiFireLine, RiFlashlightLine, RiCheckboxBlankCircleLine } from "react-icons/ri";
 
 export default function PartCard({ title, type, priority, value, status, onEdit, onDelete,}) {
 
     const priorityConfig = {
         high: {
-            icon: BsExclamationCircle,
+            icon: RiFireLine,
             color: "danger",
         },
         medium: {
-            icon: BsDashCircle,
+            icon: RiFlashlightLine,
             color: "warning",
         },
         low: {
-            icon: BsCheckCircle,
+            icon: RiCheckboxBlankCircleLine,
             color: "info",
         },
     };
@@ -45,9 +46,9 @@ export default function PartCard({ title, type, priority, value, status, onEdit,
                 <div className={`part-card-priority-rectangle ${currentPriority?.color}`}/>
 
                 <div className="part-card-info">
-                    <h3 className="part-card-title">
+                    <h2 className="part-card-title">
                         {title}
-                    </h3>
+                    </h2>
 
                     <p className="part-card-type">
                         {type}
@@ -65,9 +66,9 @@ export default function PartCard({ title, type, priority, value, status, onEdit,
 
             <div className="part-card-body">
                 <div className="part-card-details">
-                    <h3 className="part-card-value">
+                    <h2 className="part-card-value">
                         {value}
-                    </h3>
+                    </h2>
 
                     {currentStatus && (
                         <div
