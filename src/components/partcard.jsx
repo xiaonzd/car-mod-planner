@@ -1,6 +1,6 @@
 import './partcard.css';
-import { BsCheckCircle, BsCart2, BsClock, BsPencil, BsTrash, } from "react-icons/bs";
-import { RiFireLine, RiFlashlightLine, RiCheckboxBlankCircleLine } from "react-icons/ri";
+import { BsCheckCircle, BsCart2, BsClock, BsPencil, BsTrash } from "react-icons/bs";
+import { RiFireLine, RiFlashlightLine, RiCheckboxBlankCircleLine, RiWrenchLine  } from "react-icons/ri";
 
 export default function PartCard({ title, type, priority, value, status, onEdit, onDelete,}) {
 
@@ -27,6 +27,10 @@ export default function PartCard({ title, type, priority, value, status, onEdit,
         planned: {
             icon: BsClock,
             color: "info",
+        },
+        "in progress": {
+            icon: RiWrenchLine,
+            color: "primary",
         },
         installed: {
             icon: BsCheckCircle,
@@ -71,11 +75,13 @@ export default function PartCard({ title, type, priority, value, status, onEdit,
                     </h2>
 
                     {currentStatus && (
-                        <div
-                            className={`part-card-badge status ${currentStatus.color}`}
-                        >
-                            <StatusIcon />
-                            <span>{status}</span>
+                        <div className="badge-container">
+                            <div
+                                className={`part-card-badge status ${currentStatus.color}`}
+                            >
+                                <StatusIcon />
+                                <span>{status}</span>
+                            </div>
                         </div>
                     )}
                 </div>

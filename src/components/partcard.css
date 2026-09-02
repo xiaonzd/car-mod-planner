@@ -49,9 +49,14 @@
     color: var(--color-text-light);
 }
 
+.badge-container {
+    min-width: 140px;
+}
+
 .part-card-badge {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     width: fit-content;
     padding: 6px 14px;
@@ -60,12 +65,26 @@
     font-weight: 500;
 }
 
+.part-card-badge span {
+    text-transform: capitalize;
+}
+
+.part-card-badge.status {
+    float: right;
+}
+
 .part-card-badge svg {
     font-size: var(--font-text);
 }
 
 .part-card-badge.priority {
     margin-left: var(--spacing-sm);
+}
+
+.part-card-badge.primary {
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+    border: 1px solid var(--color-border);
 }
 
 .part-card-badge.success {

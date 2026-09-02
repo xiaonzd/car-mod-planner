@@ -24,8 +24,8 @@ export default function Popup({ onClose, onSuccess, mod }) {
             setName("");
             setType("");
             setPrice("");
-            setPriority("");
-            setStatus("");
+            setPriority("low");
+            setStatus("planned");
         }
     }, [mod]);
 
@@ -41,7 +41,7 @@ export default function Popup({ onClose, onSuccess, mod }) {
             priority,
             status,
         };
-
+console.log("PAYLOAD:", payload);
         if (mod) {
             const { error } = await supabase
                 .from("mod")
@@ -147,7 +147,7 @@ export default function Popup({ onClose, onSuccess, mod }) {
                             >
                                 <option value="planned">Planned</option>
                                 <option value="bought">Bought</option>
-                                <option value="in-progress">In Progress</option>
+                                <option value="in progress">In Progress</option>
                                 <option value="installed">Installed</option>
                             </select>
                         </div>

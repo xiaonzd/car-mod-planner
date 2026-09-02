@@ -1,5 +1,17 @@
 .parts {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.parts-filters {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.parts-list {
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-sm);
 }
