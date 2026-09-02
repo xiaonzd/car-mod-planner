@@ -73,19 +73,19 @@ Filter the mod list by status to quickly see what still needs to be done.
 
 ### Main Dashboard
 
-INSERT SCREENSHOT OF MAIN DASHBOARD
+![Dashboard](.src/assets/Dashboard.png)
 
 ### Add Mod
 
-INSERT SCREENSHOT OF ADD MOD POPUP
+![Add Mod](.src/assets/AddMod.png)
 
 ### Edit Mod
 
-INSERT SCREENSHOT OF EDIT MOD POPUP
+![Edit Mod](.src/assets/EditMod.png)
 
 ### Delete Confirmation
 
-INSERT SCREENSHOT OF DELETE MOD POPUP
+![Delete Mod](.src/assets/DeleteMod.png)
 
 ## 📄 Pages Overview
 
