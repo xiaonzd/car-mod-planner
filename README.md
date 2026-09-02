@@ -163,7 +163,6 @@ The application is organized into reusable React components and sections.
 * Custom sorting options
 * Add a link to the website where a part was purchased
 * Add notes or descriptions to mods
-* More detailed mod information and organization
 * Mobile optimization
 * Import and export build data
 
