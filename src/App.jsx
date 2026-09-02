@@ -1,61 +1,103 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabaseClient";
-
 import Header from "./sections/header";
 import Stats from "./sections/stats";
 import Parts from "./sections/parts";
 import Popup from "./components/popup";
-
+import Toast from "./components/toast";
+import { BsCheckCircle, BsExclamationCircle } from "react-icons/bs";
 import "./app.css";
 
 export default function App() {
-  const [mods, setMods] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedMod, setSelectedMod] = useState(null);
+    const [mods, setMods] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedMod, setSelectedMod] = useState(null);
+    const [toast, setToast] = useState(null);
 
-  const fetchMods = async () => {
-    const { data, error } = await supabase
-      .from("mod")
-      .select("*")
-      .order("id", { ascending: false });
+    const fetchMods = async () => {
+        const { data, error } = await supabase
+            .from("mod")
+            .select("*")
+            .order("id", { ascending: false });
 
-    if (error) {
-      console.log(error);
-      return;
-    }
+        if (error) {
+            console.log(error);
 
-    setMods(data);
-  };
+            setToast({
+                message: "Failed to load mods",
+                icon: BsExclamationCircle,
+                variant: "error",
+            });
 
-  useEffect(() => {
-    fetchMods();
-  }, []);
+            return;
+        }
 
-  const handleCreate = () => {
-    setSelectedMod(null);
-    setShowPopup(true);
-  };
+        setMods(data);
+    };
 
-  const handleEdit = (mod) => {
-    setSelectedMod(mod);
-    setShowPopup(true);
-  };
+    useEffect(() => {
+        fetchMods();
+    }, []);
 
-  return (
-    <div className="app">
-      <Header onAddClick={handleCreate} />
+    const handleCreate = () => {
+        setSelectedMod(null);
+        setShowPopup(true);
+    };
 
-      <Stats mods={mods} />
+    const handleEdit = (mod) => {
+        setSelectedMod(mod);
+        setShowPopup(true);
+    };
 
-      <Parts mods={mods} onEdit={handleEdit} />
+    const handleSuccess = (message) => {
+        fetchMods();
 
-      {showPopup && (
-        <Popup
-          onClose={() => setShowPopup(false)}
-          onSuccess={fetchMods}
-          mod={selectedMod}
-        />
-      )}
-    </div>
-  );
+        setToast({
+            message,
+            icon: BsCheckCircle,
+            variant: "success",
+        });
+    };
+
+    const handleError = (message) => {
+        setToast({
+            message,
+            icon: BsExclamationCircle,
+            variant: "error",
+        });
+    };
+
+    return (
+        <div className="app">
+            <Header onAddClick={handleCreate} />
+
+            <Stats mods={mods} />
+
+            <Parts
+                mods={mods}
+                onEdit={handleEdit}
+            />
+
+            {showPopup && (
+                <Popup
+                    onClose={() => {
+                        setShowPopup(false);
+                        setSelectedMod(null);
+                    }}
+                    onSuccess={handleSuccess}
+                    onError={handleError}
+                    mod={selectedMod}
+                />
+            )}
+
+            {toast && (
+                <Toast
+                    message={toast.message}
+                    icon={toast.icon}
+                    variant={toast.variant}
+                    onClose={() => setToast(null)}
+                />
+            )}
+        </div>
+    );
 }

@@ -5,7 +5,7 @@ import { BsXLg } from "react-icons/bs";
 import Button from "./button";
 import "./popup.css";
 
-export default function Popup({ onClose, onSuccess, mod }) {
+export default function Popup({ onClose, onSuccess, onError, mod }) {
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [price, setPrice] = useState("");
@@ -41,7 +41,7 @@ export default function Popup({ onClose, onSuccess, mod }) {
             priority,
             status,
         };
-console.log("PAYLOAD:", payload);
+
         if (mod) {
             const { error } = await supabase
                 .from("mod")
@@ -50,7 +50,7 @@ console.log("PAYLOAD:", payload);
 
             if (error) {
                 console.log("Error updating mod:", error);
-                alert("Error updating mod");
+                onError("Failed to update mod");
                 setLoading(false);
                 return;
             }
@@ -62,7 +62,7 @@ console.log("PAYLOAD:", payload);
 
             if (error) {
                 console.log("Error creating mod:", error);
-                alert("Error creating mod");
+                onError("Failed to create mod");
                 setLoading(false);
                 return;
             }
@@ -71,7 +71,12 @@ console.log("PAYLOAD:", payload);
         setLoading(false);
 
         onClose();
-        onSuccess();
+
+        if (mod) {
+            onSuccess("Mod updated successfully");
+        } else {
+            onSuccess("Mod added successfully");
+        }
     };
 
 

@@ -1,47 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PartCard from "../components/partcard";
 import Button from "../components/button";
-import { supabase } from "../supabaseClient";
 import "./parts.css";
 
-export default function Parts() {
-
-    const [mods, setMods] = useState([]);
+export default function Parts({ mods, onEdit }) {
     const [filter, setFilter] = useState("all");
 
-    useEffect(() => {
-        fetchMods();
-    }, []);
-
-    async function fetchMods() {
-
-        const { data, error } = await supabase
-            .from("mod")
-            .select("*")
-            .order("id", { ascending: false });
-
-        if (error) {
-            console.log("Error fetching mods:", error);
-            return;
-        }
-
-        setMods(data);
-    }
-
-    const filteredMods = filter === "all"
-        ? mods
-        : mods.filter((mod) => mod.status === filter);
+    const filteredMods =
+        filter === "all"
+            ? mods
+            : mods.filter((mod) => mod.status === filter);
 
     const counts = {
         all: mods.length,
         planned: mods.filter((mod) => mod.status === "planned").length,
         bought: mods.filter((mod) => mod.status === "bought").length,
-        "in-progress": mods.filter((mod) => mod.status === "in-progress").length,
+        "in progress": mods.filter((mod) => mod.status === "in progress").length,
         installed: mods.filter((mod) => mod.status === "installed").length,
     };
 
     return (
-        
         <div className="parts">
             <div className="parts-filters">
                 <Button
@@ -83,7 +61,6 @@ export default function Parts() {
                 >
                     Installed
                 </Button>
-
             </div>
 
             <div className="parts-list">
@@ -95,6 +72,7 @@ export default function Parts() {
                         priority={mod.priority}
                         value={`${mod.price.toLocaleString("en-US")}€`}
                         status={mod.status}
+                        onEdit={() => onEdit(mod)}
                     />
                 ))}
             </div>
